@@ -15,10 +15,19 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia('Home', [
-        'name' => 'RM',
-        'frameworks' => [
-            'Laravel', 'Vue', 'Inertia '
-        ]
+    return Inertia('Home');
+});
+
+Route::get('/users', function () {
+    return Inertia('Users', [
+        'time' => now()->toTimeString()
     ]);
+});
+
+Route::get('/settings', function () {
+    return Inertia('Settings');
+});
+
+Route::post('/logout', function() {
+ dd('logging the user out');
 });
