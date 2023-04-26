@@ -1,6 +1,6 @@
 <template>
     <nav class="">
-        <ul class="flex list-disc space-x-4 list-inside">
+        <ul class="flex space-x-6">
             <li>
                 <NavLink href="/" :active="$page.component === 'Home'">Home</NavLink>
             </li>
@@ -11,7 +11,7 @@
                 <NavLink href="/settings" :active="$page.component === 'Settings'">Settings</NavLink>
             </li>
             <li>
-                <Link href="/logout" method="post" as="button" class="text-blue-500 hover:underline">Logout</Link>
+                <Link href="/logout" method="post" as="button" class="text-black hover:underline">Logout</Link>
             </li>
         </ul>
     </nav>
