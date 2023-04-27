@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <title>My App</title>
+        <meta type="description" content="Information about my App" head-key="description">
+    </Head>
     <section class="p-6 bg-gray-200">
         <header class="flex justify-between">
             <div class="flex items-center">
@@ -20,7 +24,7 @@
 import Nav from './Nav.vue';
 export default {
     components: {
-        Nav
+        Nav,
     },
     computed: {
         username() {
