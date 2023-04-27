@@ -1,6 +1,11 @@
 <template>
     <Head title="Users" />
-    <h1 class="text-3xl font-bold">Users</h1>
+    <div class="flex justify-between">
+        <h1 class="text-3xl font-bold">Users</h1>
+
+        <input v-model="search" type="text" placeholder="search" class="border px-2 rounded-lg">
+    </div>
+
 
     <div class="flex flex-col mt-6">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -32,7 +37,7 @@
         </div>
     </div>
     <!-- Pagination -->
-    <Pagination :links="users.links" class="mt-6"/>
+    <Pagination :links="users.links" class="mt-6" />
     <div style="margin-top: 50px;">
         <p>The current time is {{ time }}.</p>
         <Link href="/users" class="text-blue-500" preserve-scroll>Refresh</Link>
@@ -41,8 +46,14 @@
 
 <script setup>
 import Pagination from '../Shared/Pagination.vue';
+import { ref, watch } from 'vue';
+import { Inertia } from '@inertiajs/inertia';
 defineProps({
     time: String,
     users: Object
+})
+let search = ref('');
+watch(search, value => {
+    Inertia.get('/users', { search: value }, { preserveState: true });
 })
 </script>
