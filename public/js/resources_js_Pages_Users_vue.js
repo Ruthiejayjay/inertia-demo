@@ -21,20 +21,24 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Users',
   props: {
     time: String,
-    users: Object
+    users: Object,
+    filters: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var search = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+    var props = __props;
+    var search = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(props.filters.search);
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(search, function (value) {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get('/users', {
         search: value
       }, {
-        preserveState: true
+        preserveState: true,
+        replace: true
       });
     });
     var __returned__ = {
+      props: props,
       search: search,
       Pagination: _Shared_Pagination_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,

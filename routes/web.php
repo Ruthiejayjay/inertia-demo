@@ -21,11 +21,18 @@ Route::get('/', function () {
 
 Route::get('/users', function () {
     return Inertia('Users', [
-        'users' => User::paginate(10)->through(fn($user)=>[
-            'id' => $user->id,
-            'name' => $user->name
-        ]),
-         'time' => now()->toTimeString()
+        'users' => User::query()
+            ->when(Request::input('search'), function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%");
+            })
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($user) => [
+                'id' => $user->id,
+                'name' => $user->name
+            ]),
+        'filters' => Request::only(['search']),
+        'time' => now()->toTimeString()
     ]);
 });
 
@@ -33,6 +40,6 @@ Route::get('/settings', function () {
     return Inertia('Settings');
 });
 
-Route::post('/logout', function() {
- dd('logging the user out');
+Route::post('/logout', function () {
+    dd('logging the user out');
 });
