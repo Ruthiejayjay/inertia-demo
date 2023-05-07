@@ -11,7 +11,7 @@
                 <NavLink href="/settings" :active="$page.component === 'Settings'">Settings</NavLink>
             </li>
             <li>
-                <Link href="/logout" method="post" as="button" class="text-black hover:underline">Logout</Link>
+                <NavLink href="/logout" method="post">Logout</NavLink>
             </li>
         </ul>
     </nav>
